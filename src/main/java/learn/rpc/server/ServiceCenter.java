@@ -37,7 +37,7 @@ public class ServiceCenter implements server {
 
     @Override
     public void register(Class serviceInterface, Class impl) {
-
+        registerCentor.put(serviceInterface.getName(),impl);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class ServiceCenter implements server {
                     throw new ClassNotFoundException("serviceClass not found");
                 }
                 Method method = serviceClass.getMethod(methodName,parameterType);
-                Object result = method.invoke(serviceClass,argument);
+                Object result = method.invoke(serviceClass.newInstance(),argument);
 
                 output = new ObjectOutputStream(client.getOutputStream());
                 output.writeObject(result);
