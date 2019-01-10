@@ -28,11 +28,11 @@ public class Client<T> {
                             outputStream.writeUTF(method.getName());
                             outputStream.writeObject(method.getParameterTypes());
                             outputStream.writeObject(args);
+                            while (inputStream==null){
+                                inputStream = new ObjectInputStream(socket.getInputStream());
+                            }
 
-                            inputStream = new ObjectInputStream(socket.getInputStream());
                             result = inputStream.readObject();
-                        }catch (Exception e){
-                            e.printStackTrace();
                         }finally {
                             if (inputStream != null){
                                 inputStream.close();
