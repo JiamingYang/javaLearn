@@ -21,7 +21,7 @@ public class ServiceCenter implements server {
     private static final HashMap<String , Class> registerCentor = new HashMap<String , Class>();
     private static boolean isRunning = false;
     private static int port;
-
+    protected static int index;
     public ServiceCenter(int port){
         this.port = port;
     }
@@ -47,10 +47,13 @@ public class ServiceCenter implements server {
         System.out.print("start server");
 
         try{
+            InputStream inputStream =null;
+            Socket socket=null;
             while (true){
                 executorService.execute(new ServiceTask(serverSocket.accept()));
             }
         }finally {
+
             serverSocket.close();
         }
     }
@@ -69,6 +72,9 @@ public class ServiceCenter implements server {
         }
         @Override
         public void run() {
+            System.out.print("\n");
+            System.out.print("the forget breakpoint ");
+            System.out.print(index++);
             ObjectInputStream input = null;
             ObjectOutputStream output = null;
             try {

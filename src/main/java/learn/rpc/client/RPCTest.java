@@ -13,9 +13,7 @@ import java.net.InetSocketAddress;
 public class RPCTest {
     public static void main(String[] args) throws IOException {
         HelloService helloService = Client.getRemoteProxyObj(HelloService.class , new InetSocketAddress(8088));
-        Method[] methods = helloService.getClass().getMethods();
 
-        Class<?> typeName = String.class;
         System.out.print(helloService.sayHello("test"));
     }
 }
