@@ -30,7 +30,7 @@ public class pro300 {
 
         int maxEndHere = 1, result = 0;
 
-        for (int i = 0;i < n; i++){
+        for (int i = 1;i < n; i++){
             result = findMaxSub(nums,i);
             if((nums[i-1] < nums[n-1]) && (result + 1 >maxEndHere)){
                 maxEndHere = result +1;
@@ -63,7 +63,7 @@ public class pro300 {
 
         for (int i = 0;i < n; i++)cache[i]=1;
 
-        for (int i = 0;i < n; i++){
+        for (int i = 1;i < n; i++){
             for (int j = 0; j< i;j++){
                 if(nums[j]<nums[i]&&cache[i]<cache[j]+1){
                     cache[i]=cache[j]+1;
