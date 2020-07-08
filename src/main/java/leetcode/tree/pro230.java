@@ -83,33 +83,24 @@ public class pro230 {
      */
 
     public static void postorderTraversal(TreeNode root){
-        int[] sign = new int[20];
-        Stack<TreeNode> stack = new Stack();
-        TreeNode t = root;
-        if( t==null )
-            return;
+        Stack<TreeNode> s1 = new Stack<TreeNode>();
+        Stack<TreeNode> s2 = new Stack<TreeNode>();
 
-        while(t!=null){
-            stack.push(t);
-            sign[ stack.size()-1] = 0;
-            t = t.leftChild;
-        }
-        while(!stack.isEmpty() ){
-            t = stack.peek();
-
-            while( t.rightChild!=null && sign[stack.size()-1]==0 ){
-                sign[stack.size()-1] = 1;
-                t = t.rightChild;
-                while(t!=null){
-                    stack.push(t);
-                    sign[stack.size()-1] = 0;
-                    t = t.leftChild;
-                }
-                t = stack.peek();
-
+        TreeNode head = root;
+        s1.push(head);
+        while (s1.size()>0){
+            head = s1.pop();
+            s2.push(head);
+            if (head.leftChild!=null){
+                s1.push(head.leftChild);
             }
-            System.out.println( t.num);
-            stack.pop();
+            if (head.rightChild != null){
+                s1.push(head.rightChild);
+            }
+        }
+        while (!s2.isEmpty()){
+            System.out.print(s2.pop().num + " ");
+
         }
 
 
