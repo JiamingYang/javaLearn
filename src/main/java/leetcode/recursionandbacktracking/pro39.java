@@ -30,17 +30,18 @@ public class pro39 {
     void backtracking(int[] candidates,int target,
     int start,Stack solution,ArrayList<Stack> results){
         if( target < 0){
+            return;
 
         }
 
         if (target == 0){
             results.add(solution);
-        }
-
-        for (int i = start; i<candidates.length; i++){
-            solution.push( candidates[i] );
-            backtracking(candidates,target - candidates[i],i,solution,results);
-            solution.pop();
+        }else {
+            for (int i = start; i<candidates.length; i++){
+                solution.push( candidates[i] );
+                backtracking(candidates,target - candidates[i],i,solution,results);
+                solution.pop();
+            }
         }
 
     }
